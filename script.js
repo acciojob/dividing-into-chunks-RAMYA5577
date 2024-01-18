@@ -2,7 +2,7 @@ const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 
 const divide = (arr, n) => {
   let sum = 0, ans = [], subArray = [];
-	for(int i=0; i<arr.length; i++){
+	for(let i=0; i<arr.length; i++){
 		if(sum+arr[i] <= n){
 			// include the value in the subArray
 			subArray.push(arr[i]);
@@ -10,6 +10,7 @@ const divide = (arr, n) => {
 		}
 		else{
 			ans.push(subArray);
+			//Strat a new subArray
 			subArray = [arr[i]];
 			sum = arr[i];
 		}
