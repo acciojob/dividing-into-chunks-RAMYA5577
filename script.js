@@ -1,23 +1,28 @@
 const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 
 const divide = (arr, n) => {
-  let sum = 0, ans = [], subArray = [];
-	for(let i=0; i<arr.length; i++){
-		if(sum+arr[i] <= n){
-			// include the value in the subArray
-			subArray.push(arr[i]);
-			sum+=arr[i];
+	let result = [];
+	let currSubArray = [];
+	let currSum = 0;
+	arr.reduce(function(acc,num){
+		if(currSum+num<=n){
+			currSubArray.push(num);
+			currSum+=num;
 		}
 		else{
-			ans.push(subArray);
-			//Strat a new subArray
-			subArray = [arr[i]];
-			sum = arr[i];
+			result.push(currSubArray);
+			if(num<=n){
+			currSubArray = [num];
+			}
+			else 
+				currSubArray = [];
+			currSum = num;
 		}
-		
+	},[])
+	if(currSubArray.length >0){
+		result.push(currSubArray);
 	}
-	ans.push(subArray);
-	return ans;
+	return result;
 };
 
 const n = prompt("Enter n: ");
